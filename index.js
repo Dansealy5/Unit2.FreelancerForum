@@ -1,13 +1,12 @@
 const freelancers = [
     { name: "Dr. Slice", price: 25, occupation: "gardener" },
     { name: "Dr. Pressure", price: 51, occupation: "programmer" },
-    { name: "Prof. Possibility", price: 43, occupation: "teacher" },
-    { name: "Prof. Prism", price: 81, occupation: "teacher" },
-    { name: "Dr. Impulse", price: 43, occupation: "teacher" },
-    { name: "Prof. Spark", price: 76, occupation: "programmer" },
-    { name: "Dr. Wire", price: 47, occupation: "teacher" },
-    { name: "Prof. Goose", price: 72, occupation: "driver" },
   ];
+
+  const newNames = ["John", "Timmy", "Bobby", "Jimmy", "Drake", "Emma", "Alyssa", "Emily", "Liz"]
+  const newPrices = [33, 55, 16, 68, 92, 47, 11, 53, 49]
+  const newOccupations = ["driver", "chef", "engineer", "programmer", "welder", "electrician", "landscaper"]
+  
   const maxFreelancers = 25;
 
   let totalPrice = freelancers.reduce((sum, freelancer) => sum + freelancer.price, 0);
@@ -17,12 +16,22 @@ const freelancers = [
   }
 
 function addFreelancer() {
-    const freelancer = freelancers[Math.floor(Math.random() * freelancers.length)];
+    // Get random name from newNames[]
+    const newName = newNames[Math.floor(Math.random() * newNames.length)];
+
+    // Get random price from newPrices[]
+    const newPrice = newPrices[Math.floor(Math.random() * newPrices.length)];
+    
+    // Get random occupation from newOccupation[]
+    const newOccupation = newOccupations[Math.floor(Math.random() * newOccupations.length)];
+
+    const randomFreelancer = { name: newName, price: newPrice, occupation: newOccupation}
+
     if (freelancers.length >= maxFreelancers) {
         clearInterval(addFreelancerIntervalId);
     }
-    freelancers.push(freelancer);
-    totalPrice += freelancer.price;
+    freelancers.push(randomFreelancer);
+    totalPrice += randomFreelancer.price;
 }
 
 function render() {
@@ -43,6 +52,6 @@ function render() {
 const addFreelancerIntervalId = setInterval(() => {
     addFreelancer();
     render();
-}, 2000);
+}, 5000);
 
 render();
